@@ -1,9 +1,33 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { TodoList } from './todo-list';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<TodoList />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const mockStore = configureStore([]);
+
+describe('<TodoList />', () => {
+  let store: any;
+  let component: any;
+
+  beforeEach(() => {
+    store = mockStore({
+      todos: []
+    });
+    component = render(
+      <Provider store={store}>
+        <TodoList />
+      </Provider>
+    );
+  });
+
+  it('should render', () => {
+    expect(component).toBeDefined();
+  });
+
+  describe('snapshots', () => {
+    it('should render', () => {
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
