@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React, { useState } from 'react';
+import './app.scss';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { add, done } from './actions';
+import { Todo } from './models/todo';
+import { TodoState } from './typings/todos';
 
 const App: React.FC = () => {
+  const [text, setText] = useState('');
+  const todos = useSelector((state: TodoState) => state.todos);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="todo-container">
+        <div className="todo-container__box">
+          <h2>Pending ({todos.filter((todo: Todo) => !todo.completed).length})</h2>
+          <ul>
+            {todos.filter((todo: Todo) => !todo.completed).map((todo: Todo) => {
+              return <li key={todo.id}>
+                {todo.text}
+                <button onClick={() => dispatch(done(todo.id))}>Done</button>
+              </li>
+            })}
+          </ul>
+        </div>
+        <div className="todo-container__box">
+          <h2>Completed ({todos.filter((todo: Todo) => todo.completed).length})</h2>
+          <ul>
+            {todos.filter((todo: Todo) => todo.completed).map((todo: Todo) => {
+              return <li key={todo.id} style={{ textDecoration: 'line-through' }}>
+                {todo.text}
+              </li>
+            })}
+          </ul>
+        </div>
+      </div>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <button onClick={() => dispatch(add(text))}>Add todo</button>
     </div>
   );
 }
