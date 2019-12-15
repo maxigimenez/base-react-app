@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import './app.scss';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { add, done } from './actions';
-import { Todo } from './models/todo';
-import { TodoState } from './typings/todos';
+import { add, done } from '../../actions';
+import { Todo } from '../../models/todo';
+import { TodoState } from '../../typings/todos';
 
-const App: React.FC = () => {
+export const TodoList: React.FunctionComponent = () => {
   const [text, setText] = useState('');
   const todos = useSelector((state: TodoState) => state.todos);
   const dispatch = useDispatch();
@@ -41,5 +40,3 @@ const App: React.FC = () => {
     </div>
   );
 }
-
-export default App;
