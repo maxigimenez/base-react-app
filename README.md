@@ -2,7 +2,7 @@
 
 ## Motivation
 
-I feel my self losing a bunch of time setting up always the same structure for my applications, so I decided to put everything together and use this project as a base.
+Instead of doing the same set-up over and over, I decided to create this skeleton using my usual stack for side-projects.
 
 Some questions that you might have:
 
@@ -20,10 +20,11 @@ Soon! but feel free to fork the repo and do it :)
 - React
 - React-router
 - Redux
+- Styled Components
 - Sass
 - Jest
 
-Any crucial library missing? [Open an issue or a PR!](https://github.com/maxigimenez/base-react-app/issues)
+Any missing library? [Open an issue or a PR!](https://github.com/maxigimenez/base-react-app/issues)
 
 ## Available Scripts
 
