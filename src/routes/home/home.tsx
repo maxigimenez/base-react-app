@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../../helper/axios';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  font-size: 30px;
+  color: tomato;
+`;
 
 export const Home: React.FunctionComponent = () => {
   const [data, setData] = useState([]);
@@ -12,7 +18,7 @@ export const Home: React.FunctionComponent = () => {
   }, []);
 
   return <div>
-    Welcome!
+    <Title>Welcome!</Title>
     <hr />
     Fetched data: { data.length }
   </div>;
